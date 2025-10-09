@@ -1,27 +1,8 @@
-# Análise da Relação entre Renda e Desempenho no ENEM
-
-Este projeto tem como objetivo principal explorar a relação entre a renda familiar dos participantes do ENEM 2024 e suas notas nas provas de Linguagens, Matemática, Ciências Humanas, Ciências da Natureza e Redação. A análise utiliza os microdados do ENEM, com foco na preparação, limpeza e visualização dos dados para extrair insights.
-
-Lista das principais ferramentas utilizadas:
-
-Python
-
-Pandas (para manipulação e análise de dados)
-
-Matplotlib / Seaborn (para visualização)
-
-SQL
-
-Metodologia e Desafios
-
-1. Fonte dos Dados:
-
-Os dados para esta análise foram obtidos do [Microdados do Enem 2024](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/enem). O projeto utilizou os arquivos PARTICIPANTES_2024.csv e RESULTADOS_2024.csv.
-
 # 🎓 Análise Comparativa dos Microdados do ENEM
 
 ## 📋 Índice
 
+- [Dados Coletados](#sobre-os-microdados)
 - [Sobre o Projeto](#sobre-o-projeto)
 - [Funcionalidades](#funcionalidades)
 - [Requisitos](#requisitos)
@@ -33,15 +14,13 @@ Os dados para esta análise foram obtidos do [Microdados do Enem 2024](https://w
 - [Saídas Geradas](#saídas-geradas)
 - [Troubleshooting](#troubleshooting)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Contribuindo](#contribuindo)
+- [Fontes de Dados](#fontes-de-dados)
 - [Licença](#licença)
 
 ---
-
 ## 🎯 Sobre o Projeto
 
 Este projeto realiza uma **análise comparativa** dos microdados do ENEM, focando especialmente em participantes dos grupos de renda:
-
 - **Grupo A**: Nenhuma renda
 - **Grupo B**: Até R$ 1.300,00
 
@@ -50,7 +29,6 @@ A análise utiliza **PostgreSQL** para armazenamento eficiente dos dados e **Pyt
 ### 📊 Objetivo
 
 Identificar e visualizar as diferenças de desempenho no ENEM entre diferentes grupos socioeconômicos, considerando variáveis como:
-
 - Notas nas diferentes áreas de conhecimento
 - Cor/Raça
 - Sexo
@@ -74,19 +52,16 @@ Identificar e visualizar as diferenças de desempenho no ENEM entre diferentes g
 ## 📦 Requisitos
 
 ### Sistema Operacional
-
 - Windows 10/11
 - Linux (Ubuntu 20.04+, Debian, etc.)
 - macOS 10.15+
 
 ### Software
-
 - **Python**: 3.10 ou superior
 - **PostgreSQL**: 12 ou superior
 - **pgAdmin** (opcional, mas recomendado)
 
 ### Dados
-
 - Microdados do ENEM 2024 (disponíveis no site do INEP)
   - `PARTICIPANTES_2024.csv` (~4,3 milhões de registros)
   - `RESULTADOS_2024.csv` (~4,3 milhões de registros)
@@ -121,7 +96,6 @@ pip install -r requirements.txt
 ```
 
 **Conteúdo do `requirements.txt`:**
-
 ```txt
 pandas>=2.0.0
 matplotlib>=3.7.0
@@ -133,7 +107,6 @@ chardet>=5.0.0              # Detecção automática de encoding
 ```
 
 **Alternativa (se psycopg falhar):**
-
 ```bash
 pip install pg8000>=1.30.0
 ```
@@ -141,13 +114,11 @@ pip install pg8000>=1.30.0
 ### 4. Instale o PostgreSQL
 
 #### Windows:
-
 1. Baixe em: https://www.postgresql.org/download/windows/
 2. Execute o instalador
 3. Anote a senha do usuário `postgres`
 
 #### Linux (Ubuntu/Debian):
-
 ```bash
 sudo apt update
 sudo apt install postgresql postgresql-contrib
@@ -155,7 +126,6 @@ sudo systemctl start postgresql
 ```
 
 #### macOS:
-
 ```bash
 brew install postgresql
 brew services start postgresql
@@ -205,7 +175,6 @@ TABELA_RESULTADOS=resultados
 ```
 
 ⚠️ **IMPORTANTE**: 
-
 - Substitua `SUA_SENHA_AQUI` pela sua senha real do PostgreSQL
 - **NUNCA** commite o arquivo `.env` no Git!
 
@@ -393,7 +362,6 @@ main()                           # Orquestra tudo
 ## 📊 Saídas Geradas
 
 ### 1. **dados_analise_enem.csv**
-
 - Dados processados prontos para o Power BI
 - Colunas: notas, grupo de renda, sexo, cor/raça, UF, etc.
 - Encoding: UTF-8 com BOM (compatível com Excel)
@@ -408,25 +376,21 @@ main()                           # Orquestra tudo
 ### 3. **Gráficos (PNG, 300 DPI)**
 
 #### boxplots.png
-
 - 6 box plots (2x3 grid)
 - Compara distribuição de notas entre os grupos
 - Mostra: Média Objetiva, CN, CH, LC, MT, Redação
 
 #### comparativo_raca.png
-
 - Barras agrupadas por cor/raça
 - Dois painéis (Nenhuma Renda | Até 1,3k)
 - Ordem: Branca, Parda, Preta, Amarela, Indígena, Não Declarado
 
 #### comparativo_sexo.png
-
 - Barras comparando Feminino vs Masculino
 - Dois painéis por grupo de renda
 - Paleta: plasma
 
 #### diferenca_estados.png
-
 - Barras horizontais ordenadas por diferença
 - Eixo X: diferença de pontos (+ ou -)
 - Linha vertical em 0 para referência
@@ -441,7 +405,6 @@ main()                           # Orquestra tudo
 **Causa**: psycopg e pg8000 não estão instalados
 
 **Solução**:
-
 ```bash
 pip install psycopg[binary]
 # OU
@@ -455,7 +418,6 @@ pip install pg8000
 **Causa**: Python 3.14 é muito novo, psycopg não tem DLLs compatíveis
 
 **Solução**:
-
 ```bash
 pip uninstall psycopg psycopg2 psycopg2-binary
 pip install pg8000
@@ -468,7 +430,6 @@ pip install pg8000
 **Causa**: Arquivo `.env` não existe ou está vazio
 
 **Solução**:
-
 1. Crie o arquivo `.env` na raiz do projeto
 2. Adicione: `DB_PASS=sua_senha`
 3. Verifique se está no mesmo diretório do `dados.py`
@@ -480,20 +441,17 @@ pip install pg8000
 **Causa**: PostgreSQL não está rodando ou credenciais erradas
 
 **Solução**:
-
 1. Abra o pgAdmin
 2. Tente conectar manualmente
 3. Verifique se a senha no `.env` está correta
 4. Confirme que o banco `enem_db` existe
 
 **Windows - Verificar serviço:**
-
 ```powershell
 Get-Service -Name postgresql*
 ```
 
 **Linux - Verificar serviço:**
-
 ```bash
 sudo systemctl status postgresql
 ```
@@ -505,10 +463,8 @@ sudo systemctl status postgresql
 **Causa**: Caminho incorreto no `.env`
 
 **Solução**:
-
 1. Verifique se os CSVs estão na pasta correta
 2. Ajuste o caminho no `.env`:
-
 ```env
 ARQUIVO_PARTICIPANTES=caminho/correto/PARTICIPANTES_2024.csv
 ```
@@ -520,7 +476,6 @@ ARQUIVO_PARTICIPANTES=caminho/correto/PARTICIPANTES_2024.csv
 **Causa**: Nomes de colunas sem aspas no SQL
 
 **Solução**: Já corrigido no código! Use aspas duplas:
-
 ```sql
 p."Q006" -- ✅ Correto
 p.Q006   -- ❌ Errado
@@ -531,13 +486,66 @@ p.Q006   -- ❌ Errado
 ### ⚠️ A carga está muito lenta
 
 **Normal!** A primeira carga demora **1-2 horas** porque:
-
 - São ~4,3 milhões de registros
 - Driver pg8000 é mais lento
 - PostgreSQL está indexando
 
-**Dicas**:
+---
 
-- Deixe rodando
+### Dicas:
+
+- Deixe rodando o script em segundo plano
+
+- Evite usar o computador enquanto o ETL está em execução
+
+- Execuções futuras serão instantâneas (dados já estarão no banco)
 
 ---
+### 🧰 Tecnologias Utilizadas
+
+O projeto foi desenvolvido utilizando tecnologias amplamente adotadas nas áreas de **engenharia de dados**, **análise estatística** e **visualização interativa**, garantindo desempenho, segurança e reprodutibilidade dos resultados.
+
+| Categoria          | Tecnologia / Fonte                                                                 | Descrição                                       |
+| ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 🐍 Linguagem       | **Python 3.10+**                                                                   | Utilizado para processamento de dados, ETL e automação das análises |
+| 🗃️ Banco de Dados | **PostgreSQL 12+**                                                                 | Armazenamento relacional dos microdados do ENEM, com queries otimizadas |
+| 📊 Análise         | **Pandas**, **NumPy**, **SQLAlchemy**                                              | Manipulação tabular, cálculos estatísticos e integração com SQL |
+| 📈 Visualização    | **Matplotlib**, **Seaborn**, **Power BI**                                          | Criação de gráficos, comparativos e dashboards analíticos |
+| 🔐 Segurança       | **python-dotenv**                                                                  | Gerenciamento seguro de credenciais e variáveis de ambiente |
+| ⚙️ Automação       | **Chardet**, **Time**, **OS**                                                      | Detecção de encoding, controle de tempo e automação de tarefas do sistema |
+
+
+---
+
+### 💡 Observações
+
+- O projeto é **totalmente reproduzível** em qualquer ambiente com Python 3.10+ e PostgreSQL.  
+- Todas as dependências estão listadas no arquivo [`requirements.txt`](./requirements.txt).  
+- As credenciais sensíveis são gerenciadas via arquivo `.env`, que **não deve ser versionado**.  
+- Os dados do ENEM foram obtidos diretamente do portal de dados abertos do **[INEP](https://www.gov.br/inep)**.
+
+---
+
+### 🧠 Fontes de Dados
+
+Os dados utilizados nesta análise foram obtidos do portal oficial do INEP:
+📊 Microdados do Enem 2024 > 🔗 Fonte oficial dos dados: [Microdados do Enem 2024 - INEP](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/enem)
+
+
+O projeto utilizou os seguintes arquivos disponibilizados publicamente:
+
+PARTICIPANTES_2024.csv – Informações demográficas e socioeconômicas dos candidatos
+
+RESULTADOS_2024.csv – Desempenho dos participantes em cada área de conhecimento
+
+🔒 Todos os dados são anônimos e de acesso público, seguindo as diretrizes de transparência e LGPD.
+
+---
+
+### 📜 Licença
+
+Este projeto é distribuído sob a licença MIT — veja o arquivo LICENSE
+ para mais detalhes.
+
+⚠️ Este repositório tem fins exclusivamente educacionais e analíticos.
+Nenhuma informação pessoal dos candidatos é utilizada ou divulgada.
