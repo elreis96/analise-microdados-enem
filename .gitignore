@@ -1,0 +1,7 @@
+.env
+analise_enem_postgres_*/
+analise_enem_*/
+microdados_enem_2024/
+__pycache__/
+*.pyc
+codigos usados.txt
