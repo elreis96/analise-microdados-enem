@@ -53,7 +53,6 @@ Identificar e visualizar as diferenças de desempenho no ENEM entre diferentes g
 ### Sistema Operacional
 - Windows 10/11
 - Linux (Ubuntu 20.04+, Debian, etc.)
-- macOS 10.15+
 
 ### Software
 - **Python**: 3.10 ou superior
@@ -83,7 +82,7 @@ cd analise-enem
 python -m venv venv
 venv\Scripts\activate
 
-# Linux/Mac
+# Linux
 python3 -m venv venv
 source venv/bin/activate
 ```
@@ -124,12 +123,6 @@ sudo apt install postgresql postgresql-contrib
 sudo systemctl start postgresql
 ```
 
-#### macOS:
-```bash
-brew install postgresql
-brew services start postgresql
-```
-
 ---
 
 ## ⚙️ Configuração
@@ -150,7 +143,7 @@ Crie um arquivo `.env` na raiz do projeto:
 # Windows (PowerShell)
 New-Item .env
 
-# Linux/Mac
+# Linux/
 touch .env
 ```
 
@@ -158,17 +151,19 @@ touch .env
 
 ```env
 # Configurações do Banco de Dados
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=enem_db
-DB_USER=postgres
+DB_HOST=SEU_HOST
+DB_PORT=PORTA_UTILIZADA
+DB_NAME=SEU_BANCO
+DB_USER=SEU_USUARIO
 DB_PASS=SUA_SENHA_AQUI
 
 # Caminhos dos Arquivos
+Caminho sugerido
 ARQUIVO_PARTICIPANTES=microdados_enem_2024/DADOS/PARTICIPANTES_2024.csv
 ARQUIVO_RESULTADOS=microdados_enem_2024/DADOS/RESULTADOS_2024.csv
 
 # Nomes das Tabelas
+Nomes das Tabelas sugeridas
 TABELA_PARTICIPANTES=participantes
 TABELA_RESULTADOS=resultados
 ```
@@ -430,7 +425,7 @@ pip install pg8000
 
 **Solução**:
 1. Crie o arquivo `.env` na raiz do projeto
-2. Adicione: `DB_PASS=sua_senha`
+2. Adicione: `DB_PASS=SUA_SENHA`
 3. Verifique se está no mesmo diretório do `dados.py`
 
 ---
@@ -443,7 +438,7 @@ pip install pg8000
 1. Abra o pgAdmin
 2. Tente conectar manualmente
 3. Verifique se a senha no `.env` está correta
-4. Confirme que o banco `enem_db` existe
+4. Confirme que o banco `SEU_BANCO` existe
 
 **Windows - Verificar serviço:**
 ```powershell
@@ -518,8 +513,7 @@ O projeto foi desenvolvido utilizando tecnologias amplamente adotadas nas áreas
 
 ### 💡 Observações
 
-- O projeto é **totalmente reproduzível** em qualquer ambiente com Python 3.10+ e PostgreSQL.  
-- Todas as dependências estão listadas no arquivo [`requirements.txt`](./requirements.txt).  
+- O projeto é **totalmente reproduzível** em qualquer ambiente com Python 3.10+ e PostgreSQL.    
 - As credenciais sensíveis são gerenciadas via arquivo `.env`, que **não deve ser versionado**.  
 - Os dados do ENEM foram obtidos diretamente do portal de dados abertos do **[INEP](https://www.gov.br/inep)**.
 
