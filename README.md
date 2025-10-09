@@ -2,7 +2,6 @@
 
 ## 📋 Índice
 
-- [Dados Coletados](#sobre-os-microdados)
 - [Sobre o Projeto](#sobre-o-projeto)
 - [Funcionalidades](#funcionalidades)
 - [Requisitos](#requisitos)
